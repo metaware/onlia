@@ -22,13 +22,22 @@ Or install it yourself as:
 
 ## Usage
 
+```
 Onlia.configure do |config|
   config.environment = "development"
   config.api_key = "api_token_here"
 end
+```
 
+```
 $onlia_client = Onlia::Client.new
+```
+
+```
 $onlia_client.refresh_token
+```
+
+```
 $onlia_client.get_quote(
   {
     "product": {
@@ -72,12 +81,13 @@ $onlia_client.get_quote(
     }
   }
 )
+```
 
-
+```
 $onlia_client.auto_lookup(
   { "vin": "xyz" }
 )
-
+```
 
 ## Development
 
