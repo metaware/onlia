@@ -22,6 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
+Configure Onlia in config/initializers/onlia.rb
 ```
 Onlia.configure do |config|
   config.environment = "development"
@@ -29,14 +30,17 @@ Onlia.configure do |config|
 end
 ```
 
+Create onlia client in config/initializers/onlia.rb
 ```
 $onlia_client = Onlia::Client.new
 ```
 
+Refresh token if needed
 ```
 $onlia_client.refresh_token
 ```
 
+Get quote for Onlia
 ```
 $onlia_client.get_quote(
   {
@@ -83,6 +87,7 @@ $onlia_client.get_quote(
 )
 ```
 
+Autolookup by vin
 ```
 $onlia_client.auto_lookup(
   { "vin": "xyz" }

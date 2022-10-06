@@ -17,7 +17,14 @@ module Onlia
       @decoded_token = JWT.decode(@api_token, nil, false).first
     end
 
+    def refresh_if_required
+      if @decoded_token && @decoded_token["exp"] < Time.now.to_i
+        self.refresh_token
+      end
+    end
+
     def post(endpoint, body, token = nil)
+      self.refresh_if_required
       endpoint_url = "#{Onlia.configuration.base_url}/#{endpoint}"
       headers = {
         "Content-Type" => "application/json",
@@ -29,6 +36,10 @@ module Onlia
         JSON.parse(response.body)
       rescue RestClient::ExceptionWithResponse => exception
         JSON.parse(exception.response.body)
+      rescue JSON::ParserError => exception
+        puts exception.response
+      rescue RestClient::Unauthorized, RestClient::Forbidden => exception
+        puts exception.response
       end
     end
 
@@ -47,15 +58,18 @@ module Onlia
 
     # TODO: Add more methods here
     def bind_agreement(params)
-      post("/Auto/bind", params, @api_token)
+      puts "TODO: bind_agreement"
+      # post("/Auto/bind", params, @api_token)
     end
 
     def start_agreement(params)
-      post("/Auto/start", params, @api_token)
+      puts "TODO: start_agreement"
+      # post("/Auto/start", params, @api_token)
     end
 
     def end_agreement(params)
-      post("/Auto/end", params, @api_token)
+      puts "TODO: end_agreement"
+      # post("/Auto/end", params, @api_token)
     end
   end
 end
