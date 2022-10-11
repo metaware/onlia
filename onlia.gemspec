@@ -1,6 +1,6 @@
 require_relative 'lib/onlia/version'
 
-Gem::Specification.new do |spec|
+Gem::Specification.new do |spec| 
   spec.name          = "onlia"
   spec.version       = Onlia::VERSION
   spec.authors       = ["Manpreet"]
