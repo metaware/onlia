@@ -58,18 +58,19 @@ module Onlia
 
     # TODO: Add more methods here
     def bind_agreement(params)
-      puts "TODO: bind_agreement"
-      # post("/Auto/bind", params, @api_token)
+      post("/Auto/bind", params, @api_token)
     end
 
-    def start_agreement(params)
-      puts "TODO: start_agreement"
-      # post("/Auto/start", params, @api_token)
+    def property_address_validate(params)
+      post("/Property/address/validate", params, @api_token)
     end
 
-    def end_agreement(params)
-      puts "TODO: end_agreement"
-      # post("/Auto/end", params, @api_token)
+    def activate_agreement(params)
+      post("/Auto/activate", params, @api_token)
+    end
+
+    def terminate_agreement(params)
+      post("/auto/terminate", params, @api_token)
     end
   end
 end
