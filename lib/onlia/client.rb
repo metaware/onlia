@@ -18,9 +18,8 @@ module Onlia
     end
 
     def refresh_if_required
-      if @decoded_token && @decoded_token["exp"] < Time.now.to_i
-        self.refresh_token
-      end
+      # TODO refresh only when required expiry < current time
+      self.refresh_token
     end
 
     def post(endpoint, body, token = nil)
