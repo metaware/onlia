@@ -18,8 +18,9 @@ module Onlia
     end
 
     def refresh_if_required
-      # TODO refresh only when required expiry < current time
-      self.refresh_token
+      if @decoded_token && @decoded_token["exp"] < Time.now.to_i
+        self.refresh_token
+      end
     end
 
     def post(endpoint, body, token = nil)
@@ -55,7 +56,6 @@ module Onlia
       post("/Auto/lookup", params, @api_token)
     end
 
-    # TODO: Add more methods here
     def bind_agreement(params)
       post("/Auto/bind", params, @api_token)
     end
