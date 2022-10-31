@@ -1,4 +1,3 @@
-Resolving dependencies...
 module Onlia
   class Configuration
     class EnvironmentMismatch < StandardError; end
