@@ -1,11 +1,10 @@
-require "pry"
 require "onlia/version"
 require "onlia/configuration"
 require "onlia/client"
 
 module Onlia
   class Error < StandardError; end
-  
+
   class << self
     def configuration
       @configuration ||= Configuration.new
@@ -15,6 +14,4 @@ module Onlia
       yield(configuration)
     end
   end
-
 end
-
