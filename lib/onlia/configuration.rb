@@ -1,3 +1,4 @@
+Resolving dependencies...
 module Onlia
   class Configuration
     class EnvironmentMismatch < StandardError; end
@@ -7,6 +8,7 @@ module Onlia
     ENVIRONMENT_MAP = {
       "production" => "https://api.onlia.ca/api/v1",
       "development" => "https://test-api.onlia.ca/api/v1",
+      "staging" => "https://test-api.onlia.ca/api/v1",
     }
 
     def initialize
