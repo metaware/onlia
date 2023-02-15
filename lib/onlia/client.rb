@@ -1,10 +1,11 @@
-require 'rest-client'
-require 'json'
-require 'jwt'
+require "rest-client"
+require "json"
+require "jwt"
 
 module Onlia
   class Client
     class ResponseError < StandardError; end
+
     attr_accessor :api_token, :raw_token, :decoded_token
 
     def initialize
@@ -33,7 +34,15 @@ module Onlia
       headers["Authorization"] = "Bearer #{token}" if !token.nil?
       begin
         response = RestClient::Request.execute(method: :post, url: endpoint_url, payload: body.to_json, headers: headers)
-        JSON.parse(response.body)
+        if endpoint === "/Auto/activate"
+          if response&.body&.include?("%PDF")
+            response.body
+          else
+            JSON.parse(response.body)
+          end
+        else
+          JSON.parse(response.body)
+        end
       rescue RestClient::ExceptionWithResponse => exception
         JSON.parse(exception.response.body)
       rescue JSON::ParserError => exception
@@ -44,9 +53,9 @@ module Onlia
     end
 
     def get_token
-      request_body = {"apiKey": Onlia.configuration.api_key}
+      request_body = { "apiKey": Onlia.configuration.api_key }
       post("/login", request_body)
-		end
+    end
 
     def get_quote(params)
       post("/Auto/quote", params, @api_token)
