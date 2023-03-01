@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.summary = %q{Onlia is a Ruby gem that provides a simple interface to the Onlia API.}
   spec.description = %q{Onlia is a Ruby gem that provides a simple interface to the Onlia API. It allows you to request quote from Onlia API.}
   spec.homepage = "https://roam.auto"
-  spec.required_ruby_version = Gem::Requirement.new(">= 3.2.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.7.2")
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/metaware/onlia"
